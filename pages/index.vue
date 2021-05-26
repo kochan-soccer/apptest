@@ -1,40 +1,35 @@
-
 <template>
-  <div class="page">
-    <p>user.uid: {{ user.uid }}</p>
-    <p>user.email: {{ user.email }}</p>
-    <p>user.name: {{ user.name }}</p>
-    <input v-model="updateName" type="text">
-    <button @click="update">update</button>
-
-
-
+  <div class="register">
     <form class="form" @submit.prevent>
       <label class="label">
-        <span class="label">
-          email
-        </span>
-        <input class="input" type="text" v-model="email">
+        <input class="input" type="text" v-model="updateName" placeholder="ユーザーネーム">
       </label>
 
 
       <label class="label">
-        <span class="label">
-          password
-        </span>
-        <input class="input" type="password" v-model="password">
+        <input class="input" type="password" v-model="email" placeholder="メールアドレス">
       </label>
 
 
-      <button class="button" type="submit" @click="login">
-        Login
-      </button>
+      <label class="label">
+        <input class="input" type="text" v-model="password" placeholder="パスワード">
+      </label>
+
+
+      <NuxtLink to="/login" class="button" type="submit" @click="register">
+        新規登録
+      </NuxtLink>
     </form>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    user () {
+      return this.$store.getters['user']
+    },
+  },
   data () {
     return {
       email: '',
@@ -42,18 +37,16 @@ export default {
       updateName: '',
     }
   },
-  computed: {
-    user () {
-      return this.$store.getters['user']
-    },
-  },
   methods: {
-    update () {
-      this.$store.dispatch('update', this.updateName)
-    },
-    login(email, password) {
-      this.$store.dispatch('login', {email: this.email, password: this.password})
-    },
+    register () {
+      this.$store.dispatch('register', {email: this.email, password: this.password, name: this.updateName})
+      this.email = '';
+      this.password = '';
+      this.updateName = '';
+    }
   },
 }
 </script>
+<style scoped>
+
+</style>

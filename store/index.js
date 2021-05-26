@@ -41,17 +41,6 @@ export const actions = {
       console.log({'code':error.code, 'message':error.message})
     })
   },
-  update ({ context }, name) {
-    firebase.auth().currentUser.updateProfile({
-      displayName: name
-    })
-      .then(()=> {
-        console.log('Update successful')
-      })
-      .catch((error)=> {
-        console.log(error)
-      })
-  },
 }
 
 export const mutations = {
