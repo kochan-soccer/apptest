@@ -40,7 +40,7 @@ export default {
     },
 
     home() {
-      this.$router.replace('/home')
+      this.$router.replace('/home', () => {})
     }
   },
 }
