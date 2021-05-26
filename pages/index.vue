@@ -1,4 +1,3 @@
-ter.vueJavaScript
 <template>
   <div class="register">
     <div class="header">
@@ -10,7 +9,7 @@ ter.vueJavaScript
       </ol>
     </div>
 
-    <div class="main_content">
+    <div class="main_form">
     <p>新規登録</p>
 
     <validation-observer ref="obs" v-slot="ObserverProps">
@@ -65,13 +64,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .register {
   background: rgb(30, 38, 77);
   height: 100vh;
   width: 100vw;
 }
-
 
 
 /* header */
@@ -105,16 +103,16 @@ export default {
 
 /* フォーム */
 
-.main_content {
+.main_form {
   width: 400px;
   background: #fff;
   text-align: center;
-  margin: 200px auto;
+  margin: 130px auto;
   padding: 20px;
   border-radius: 10px;
 }
 
-.main_content p {
+.main_form p {
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -131,11 +129,12 @@ export default {
 
 .btn {
   background: rgb(120, 0, 255);
-  padding: 5px 20px;
+  padding: 9px 20px;
   color: #fff;
   font-weight: bold;
   border-radius: 20px;
   cursor: pointer;
+  font-size: 13px;
 }
 
 .btn:hover {
