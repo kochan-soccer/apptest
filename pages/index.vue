@@ -1,43 +1,35 @@
+ter.vueJavaScript
 <template>
   <div class="register">
-    <header class=head>
-      <img src="~/assets/img/logo.png">
 
-      <ol class="main_nav">
-        <li><NuxtLink to="/" class="nav_item">新規登録</NuxtLink></li>
-        <li><NuxtLink to="/login" class="nav_item">ログイン</NuxtLink></li>
-      </ol>
-    </header>
-
-    <div class="main_form">
-      <p>新規登録</p>
-
-      <form class="form">
-      <validation-observer ref="obs" v-slot="ObserverProps">
-        <validation-provider v-slot="{ errors }" rules="required|min:4|alpha">
+    <validation-observer ref="obs" v-slot="ObserverProps">
+    <form class="form" @submit.prevent>
+      <validation-provider rules="required|max:20">
         <label class="label">
-          <input class="input" type="text" v-model="updateName" placeholder="ユーザーネーム" required/>
-        </label><br>
-        <div class="error">{{ errors[0] }}</div>
-        </validation-provider>
+          <input class="input" type="text" v-model="updateName" placeholder="ユーザーネーム">
+        </label>
+      </validation-provider>
 
-
+      <validation-provider rules="required|email">
         <label class="label">
-          <input class="input" type="password" v-model="email" placeholder="メールアドレス" required/>
-        </label><br>
+          <input class="input" type="email" v-model="email" placeholder="メールアドレス">
+        </label>
+      </validation-provider>
 
+      <validation-provider rules="required|min:6">
         <label class="label">
-          <input class="input" type="text" v-model="password" placeholder="パスワード" required/>
-        </label><br>
+          <input class="input" type="password" v-model="password" placeholder="パスワード">
+        </label>
+      </validation-provider>
 
-        <NuxtLink to="/login" class="button" type="submit" @click="register">
+
+      <NuxtLink to="login">
+        <button @click="register" class="btn" :disabled="ObserverProps.invalid || !ObserverProps.validated">
           新規登録
-        </NuxtLink>
-      </form>
-      </validation-observer>
-
-
-    </div>
+        </button>
+      </NuxtLink>
+    </form>
+    </validation-observer>
   </div>
 </template>
 
@@ -56,58 +48,12 @@ export default {
     }
   },
   methods: {
-      register() {
+    register () {
       this.$store.dispatch('register', {email: this.email, password: this.password, name: this.updateName})
-      this.email = '';
-      this.password = '';
+      this.email = '',
+      this.password = '',
       this.updateName = '';
     }
   },
 }
 </script>
-<style scoped>
-.register {
-  height: 100vh;
-  width: 100vw;
-  background: rgb(23, 30, 55);
-}
-
-.head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-}
-
-.head > img {
-  width: 12%;
-  height: auto;
-}
-
-.main_nav {
-  display: flex;
-  list-style:none;
-  margin-right: 30px;
-}
-
-.nav_item {
-  color: #fff;
-  margin-left: 20px;
-  font-weight: bold;
-}
-
-.main_form {
-  text-align: center;
-  background: #fff;
-  width: 400px;
-  border-radius: 10px;
-  margin: 150px auto 0;
-}
-
-.main_form p {
-  font-weight: bold;
-  padding: 15px 0;
-}
-
-
-</style>
