@@ -1,45 +1,52 @@
 ter.vueJavaScript
 <template>
   <div class="register">
+    <div class="header">
+      <img src="~/assets/img/logo.png">
 
-    <validation-observer ref="obs">
-    <form class="form" @submit.prevent>
-      <validation-provider rules="required|max:20">
-        <label class="label">
-          <input class="input" type="text" v-model="updateName" placeholder="ユーザーネーム">
-        </label>
-      </validation-provider>
+      <ol class="nav">
+        <li><NuxtLink to="/" class="nav_item">新規登録</NuxtLink></li>
+        <li><NuxtLink to="/login" class="nav_item">ログイン</NuxtLink></li>
+      </ol>
+    </div>
 
-      <validation-provider rules="required|email">
-        <label class="label">
-          <input class="input" type="email" v-model="email" placeholder="メールアドレス">
-        </label>
-      </validation-provider>
+    <div class="main_content">
+    <p>新規登録</p>
 
-      <validation-provider rules="required|min:6">
-        <label class="label">
-          <input class="input" type="password" v-model="password" placeholder="パスワード">
-        </label>
-      </validation-provider>
+    <validation-observer ref="obs" v-slot="ObserverProps">
+      <form class="form" @submit.prevent>
+        <validation-provider rules="required|max:20">
+          <label class="label">
+            <input class="input" type="text" v-model="updateName" placeholder="ユーザーネーム">
+          </label>
+        </validation-provider>
+
+        <validation-provider rules="required|email">
+          <label class="label">
+            <input class="input" type="email" v-model="email" placeholder="メールアドレス">
+          </label>
+        </validation-provider>
+
+        <validation-provider rules="required|min:6">
+          <label class="label">
+            <input class="input" type="password" v-model="password" placeholder="パスワード">
+          </label>
+        </validation-provider>
 
 
-      <NuxtLink to="login">
-        <button @click="register" class="btn" >
-          新規登録
-        </button>
-      </NuxtLink>
-    </form>
+        <NuxtLink to="login">
+          <button @click="register" class="btn" :disabled="ObserverProps.invalid || !ObserverProps.validated">
+            新規登録
+          </button>
+        </NuxtLink>
+      </form>
     </validation-observer>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  computed: {
-    user () {
-      return this.$store.getters['user']
-    },
-  },
   data () {
     return {
       email: '',
@@ -57,3 +64,81 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.register {
+  background: rgb(30, 38, 77);
+  height: 100vh;
+  width: 100vw;
+}
+
+
+
+/* header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.header img {
+  width: 12%;
+  height: auto;
+}
+
+.nav {
+  display: flex;
+  list-style: none;
+}
+
+.nav_item {
+  font-weight: bold;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.nav_item:hover {
+  opacity: 0.8;
+}
+
+
+/* フォーム */
+
+.main_content {
+  width: 400px;
+  background: #fff;
+  text-align: center;
+  margin: 200px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.main_content p {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.label {
+  display: block;
+}
+
+.input {
+  padding: 10px 0 10px 10px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: rgb(120, 0, 255);
+  padding: 5px 20px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+</style>

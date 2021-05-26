@@ -8,11 +8,6 @@ export const state = () => ({
   },
 })
 
-export const getters = {
-  user: state => {
-    return state.user
-  }
-}
 
 export const actions = {
   register ({ dispatch }, payload) {
