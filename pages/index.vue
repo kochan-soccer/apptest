@@ -2,7 +2,7 @@ ter.vueJavaScript
 <template>
   <div class="register">
 
-    <validation-observer ref="obs" v-slot="ObserverProps">
+    <validation-observer ref="obs">
     <form class="form" @submit.prevent>
       <validation-provider rules="required|max:20">
         <label class="label">
@@ -24,7 +24,7 @@ ter.vueJavaScript
 
 
       <NuxtLink to="login">
-        <button @click="register" class="btn" :disabled="ObserverProps.invalid || !ObserverProps.validated">
+        <button @click="register" class="btn" >
           新規登録
         </button>
       </NuxtLink>
@@ -48,7 +48,7 @@ export default {
     }
   },
   methods: {
-    register () {
+    register() {
       this.$store.dispatch('register', {email: this.email, password: this.password, name: this.updateName})
       this.email = '',
       this.password = '',
