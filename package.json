@@ -14,7 +14,8 @@
     "firebase": "^8.6.2",
     "firebase-tools": "^9.11.0",
     "nuxt": "^2.15.3",
-    "save": "^2.4.0"
+    "save": "^2.4.0",
+    "vee-validate": "^3.4.6"
   },
   "devDependencies": {}
 }
