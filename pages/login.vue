@@ -20,7 +20,7 @@
         <input class="input" type="password" v-model="password" placeholder="パスワード">
       </label>
 
-      <NuxtLink to="main">
+      <NuxtLink to="login">
         <button class="btn" @click="login">ログイン</button>
       </NuxtLink>
       </form>
@@ -48,7 +48,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           alert('ログインが完了しました')
-          this.$router.push('/')
+          this.$router.push('/main')
         })
         .catch((error) => {
           switch (error.code) {
