@@ -13,16 +13,17 @@
     <div class="main_form">
       <p>ログイン</p>
       <form class="form">
-      <label class="label">
-        <input class="input" type="email" v-model="email" placeholder="メールアドレス">
-      </label>
-      <label class="label">
-        <input class="input" type="password" v-model="password" placeholder="パスワード">
-      </label>
+        <label class="label">
+          <input class="input" type="email" v-model="email" placeholder="メールアドレス">
+        </label>
 
-      <NuxtLink to="login">
-        <button class="btn" @click="login">ログイン</button>
-      </NuxtLink>
+        <label class="label">
+          <input class="input" type="password" v-model="password" placeholder="パスワード">
+        </label>
+
+        <NuxtLink to="login">
+          <button class="btn" @click="login">ログイン</button>
+        </NuxtLink>
       </form>
     </div>
   </div>
@@ -48,7 +49,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           alert('ログインが完了しました')
-          this.$router.push('/main')
+          this.$router.push('/home')
         })
         .catch((error) => {
           switch (error.code) {
