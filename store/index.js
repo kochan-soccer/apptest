@@ -34,7 +34,8 @@ export const actions = {
   share({ dispatch }) {
     firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      // console.log(user)
+      const test = user.uid;
+      console.log(test)
     } else {
       console.log('nothello')
     }
