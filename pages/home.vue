@@ -19,7 +19,6 @@
       <form>
         <textarea cols="30" rows="6" class="textarea" maxlength="120"></textarea>
       </form>
-
       <button class="btn" @click="share">シェアする</button>
     </div>
 </div>
@@ -41,6 +40,10 @@ export default {
 
     home() {
       this.$router.replace('/home', () => {})
+    },
+
+    share() {
+      this.$store.dispatch('share')
     }
   },
 }

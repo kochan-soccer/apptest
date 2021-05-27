@@ -10,26 +10,36 @@ export const state = () => ({
 
 
 export const actions = {
-  register ({ dispatch }, payload) {
+  register({ dispatch }, payload) {
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-    .then(user => {
-      console.log(user)
-      dispatch('update', payload.name)
-    }).catch(function (error) {
-      console.log({'code':error.code, 'message':error.message})
-    })
+      .then(user => {
+        console.log(user)
+        dispatch('update', payload.name)
+      }).catch(function (error) {
+        console.log({ 'code': error.code, 'message': error.message })
+      })
   },
-  update ({ context }, name) {
+  update({ context }, name) {
     firebase.auth().currentUser.updateProfile({
       displayName: name
     })
-      .then(()=> {
+      .then(() => {
         console.log('Update successful')
       })
-      .catch((error)=> {
+      .catch((error) => {
         console.log(error)
       })
   },
+
+  share({ dispatch }) {
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // console.log(user)
+    } else {
+      console.log('nothello')
+    }
+});
+  }
 }
 
 export const mutations = {
