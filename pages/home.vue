@@ -4,11 +4,11 @@
       <img src="~/assets/img/logo.png" class="logo">
 
       <div class="point" @click="home">
-        <img src="~/assets/img/home.png">
+        <img src="~/assets/img/home.png" @click="home">
         <p>ホーム</p>
       </div>
 
-      <div class="point" @ckick="logout">
+      <div class="point" @click="logout">
         <img src="~/assets/img/logout.png">
         <p>ログアウト</p>
       </div>
@@ -20,7 +20,7 @@
         <textarea cols="30" rows="6" class="textarea" maxlength="120"></textarea>
       </form>
 
-      <button class="btn">シェアする</button>
+      <button class="btn" @click="share">シェアする</button>
     </div>
 </div>
 </template>
@@ -67,19 +67,18 @@ export default {
   display: flex;
   margin-bottom: 10px;
   align-items: center;
-  width: 200px;
+  width: 150px;
+  cursor: pointer;
 }
 
 .point img {
   width: 25px;
   height: auto;
-  cursor: pointer;
 }
 
 .point p {
   color: #fff;
   margin-left: 20px;
-  cursor: pointer;
 }
 
 
