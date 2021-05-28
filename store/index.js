@@ -23,19 +23,20 @@ export const actions = {
     firebase.auth().currentUser.updateProfile({
       displayName: name
     })
-      .then(() => {
-        console.log('Update successful')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    .then(() => {
+      console.log('Update successful')
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   },
 
   share({ dispatch }) {
     firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      const test = user.uid;
-      console.log(test)
+      if (user) {
+        const test = new Object;
+        test.id = user.uid;
+        this.$axios.post("http://127.0.0.1:8000/api/post",test.id)
     } else {
       console.log('nothello')
     }

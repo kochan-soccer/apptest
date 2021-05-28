@@ -27,6 +27,15 @@
 <script>
 import firebase from '~/plugins/firebase'
 export default {
+  computed: {
+    async insertContact() {
+      const sendData = {
+        
+      };
+      await this.$axios.post("http://127.0.0.1:8000/api/post/", sendData);
+      this.getContact();
+    },
+  },
   methods: {
     logout() {
       firebase
@@ -44,7 +53,7 @@ export default {
 
     share() {
       this.$store.dispatch('share')
-    }
+    },
   },
 }
 </script>
